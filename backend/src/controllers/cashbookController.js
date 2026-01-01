@@ -205,7 +205,7 @@ export const createTransaction = async (req, res) => {
 // Update transaction
 export const updateTransaction = async (req, res) => {
   try {
-    const { amount, type, description, category, date } = req.body;
+    const { amount, type, description, category, paymentMode, date } = req.body;
     const transaction = await CashbookTransaction.findOne({
       _id: req.params.id,
       clerkUserId: req.clerkUserId,
@@ -228,8 +228,8 @@ export const updateTransaction = async (req, res) => {
     if (amount !== undefined) transaction.amount = parseFloat(amount);
     if (type) transaction.type = type;
     if (description !== undefined) transaction.description = description;
-    if (category) transaction.category = category;
-    if (paymentMode) transaction.paymentMode = paymentMode;
+    if (category !== undefined) transaction.category = category;
+    if (paymentMode !== undefined) transaction.paymentMode = paymentMode;
     if (date) transaction.date = new Date(date);
 
     await transaction.save();

@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import api from '../../services/api';
+import { EditIcon, DeleteIcon, LoadingIcon } from '../Shared/Icons';
 import TransactionForm from './TransactionForm';
 
 const TransactionListEnhanced = ({ cashbookId, transactions, loading, onUpdate, onTransactionClick }) => {
